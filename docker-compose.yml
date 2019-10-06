@@ -1,5 +1,28 @@
 version: "3.4"
 
 services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - 80:80
+    volumes:
+      # Project files
+      - ./:/var/www/html:rw,cached
+      # Nginx configuration for Symfony
+      # - TODO
+    working_dir: /var/www/html
+    depends_on:
+      - php
+    tty: true
+
+  php:
+    build: docker/php
+    volumes:
+      # Project files
+      - ./:/var/www/html:rw,cached
+      # - TODO
+      - ./docker/php/symfony.ini:/usr/local/etc/php/conf.d/symfony.ini:ro
+    tty: true
 
 volumes:
+  
