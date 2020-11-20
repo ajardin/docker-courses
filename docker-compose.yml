@@ -20,9 +20,6 @@ services:
     volumes:
       # Project files
       - ./:/var/www/html:rw,cached
-      # - TODO
+      # PHP configuration for Symfony
       - ./docker/php/symfony.ini:/usr/local/etc/php/conf.d/symfony.ini:ro
     tty: true
-
-volumes:
-  
